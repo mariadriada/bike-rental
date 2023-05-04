@@ -1,12 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import type { RootState } from "../store";
-import { getAll, getOne } from "../../services/products";
-import { sortArrayDesc } from "../../general-functions";
-import { BykeItem } from "../../types";
+import { BikeItem } from "../../types";
 
 interface BikeState {
-  bikeList: Array<BykeItem>;
+  bikeList: Array<BikeItem>;
   error: boolean;
   loading: boolean;
 }
@@ -20,8 +18,9 @@ const initialState: BikeState = {
 export const getBikeList = createAsyncThunk(
   "bike/getAll",
   async () => {
-    console.log()
-    return []
+    const req = await fetch('http://localhost:3000/bikes')
+    const data = req.json()
+    return data
   }
 );
 
@@ -49,6 +48,6 @@ export const BikeSlice = createSlice({
 });
 
 
-export const selectBikeState = (state: RootState) => state.product;
+export const selectBikeState = (state: RootState) => state.bike;
 
 export default BikeSlice.reducer;
