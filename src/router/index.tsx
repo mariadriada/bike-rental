@@ -1,17 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 
-import { HomePage } from "../pages";
+import { HomePage, BikePage } from "../pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <h1>hello</h1>,
+    element: <HomePage />,
     errorElement: <div>Page not found!</div>,
   },
   {
-    path: "/home",
-    element: <HomePage />,
+    path: "/bike/:id",
+    element: <BikePage />,
   },
 ]);
 

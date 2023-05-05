@@ -1,7 +1,7 @@
 import { FC } from "react";
-import Box, { BoxProps } from "@mui/material/Box";
+import Box from "@mui/material/Box";
 import { BikeListProps } from "../../types";
-import { Bike } from "./Bike";
+import { EnhancedBike } from "../Bike";
 
 const BikeList: FC<BikeListProps> = ({ list }: BikeListProps) => {
   return (
@@ -13,12 +13,11 @@ const BikeList: FC<BikeListProps> = ({ list }: BikeListProps) => {
         flexWrap: "wrap",
         p: 1,
         m: 1,
-        bgcolor: "",
         borderRadius: 1,
       }}
     >
       {list.map((item, i) => (
-        <Bike key={i} {...item} />
+        <EnhancedBike key={i} {...item} />
       ))}
     </Box>
   );

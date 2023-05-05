@@ -3,16 +3,23 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import { BikeItem } from "../../../types";
+import { CardActionArea } from "@mui/material";
+import { BikeItem } from "../../types";
+import withRedirect from "../../HOC/withRedirect";
 
-const Bike: FC<BikeItem> = ({ id, name, picture, type }: BikeItem) => {
-  const handleClick = () => {
-    console.log("click", id);
+const Bike: FC<BikeItem> = ({
+  id,
+  name,
+  picture,
+  type,
+  redirect,
+}: BikeItem) => {
+  const handleClick = (): void => {
+    redirect(id);
   };
 
   return (
-    <Card sx={{ minWidth: 150, mt: 4 }}>
+    <Card sx={{ minWidth: 150, m: 1 }}>
       <CardActionArea onClick={handleClick}>
         <CardMedia component="img" height="100" image={picture} alt={name} />
         <CardContent>
@@ -28,4 +35,8 @@ const Bike: FC<BikeItem> = ({ id, name, picture, type }: BikeItem) => {
   );
 };
 
-export default Bike;
+const EnhancedBike = withRedirect(Bike);
+
+export default EnhancedBike;
+
+export { Bike };

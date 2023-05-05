@@ -1,10 +1,5 @@
 import { ReactNode } from "react";
 
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
-
 export type StoreProviderProps = {
   children: ReactNode;
 };
@@ -19,8 +14,34 @@ export type BikeItem = {
   name: string;
   picture: string;
   type: "normal";
+  redirect: (id: string) => void;
 };
 
 export interface BikeListProps {
   list: Array<BikeItem>;
 }
+
+export type Info = {
+  title: string;
+  content: string;
+};
+
+export type AlertDialogProps = {
+  open: boolean;
+  setOpen: (state: boolean) => void;
+  title: string;
+  content: string;
+  handleAgree: () => void;
+};
+
+export type FormData = {
+  username: string;
+  email: string;
+  phone: string;
+  dateStart: string;
+  dateEnd: string;
+};
+
+export type FormBikeProps = {
+  handleSubmit: (data: FormData) => void;
+};

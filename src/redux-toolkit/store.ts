@@ -1,6 +1,10 @@
 import { configureStore, Store } from "@reduxjs/toolkit";
 
-import BikeReducer, { selectBikeState, getBikeList } from "./slices/bikeSlice";
+import BikeReducer, {
+  selectBikeState,
+  getBikeList,
+  getOneBike,
+} from "./slices/bikeSlice";
 import { useGlobalDispatch, useGlobalSelector } from "./hooks";
 
 export const store: Store = configureStore({
@@ -18,6 +22,7 @@ export const useGlobalStore = () => {
   const dispatch = useGlobalDispatch();
   return {
     bikeSelect,
+    getOneBike: (id: string) => dispatch(getOneBike(id)),
     getBikeList: () => dispatch(getBikeList()),
   };
 };
