@@ -16,7 +16,7 @@ Project created with Vite
  
     ```git clone https://github.com/mariadriada/bike-rental.git```
 
-2. Install dependencies in the folter of project by the console
+2. Install dependencies. In folder of project by the terminal
  
     ```npm install```
 
