@@ -1,9 +1,7 @@
-
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 
 import { HomePage } from "../pages";
-
 
 const router = createBrowserRouter([
   {
@@ -13,8 +11,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/home",
-    element: <HomePage/>
-  }
+    element: <HomePage />,
+  },
 ]);
 
 export const CustomRouterProvider = () => (

@@ -1,15 +1,17 @@
-import { GlobalStoreProvider } from './redux-toolkit/StoreProvider'
-import { CustomRouterProvider } from './router'
+import { Container } from "@mui/material";
+import { GlobalStoreProvider } from "./redux-toolkit/StoreProvider";
+import { CustomRouterProvider } from "./router";
 
-import './App.css'
+import "./App.css";
 
 function App() {
-
   return (
     <GlobalStoreProvider>
-      <CustomRouterProvider/>
+      <Container>
+        <CustomRouterProvider />
+      </Container>
     </GlobalStoreProvider>
-  )
+  );
 }
 
-export default App
+export default App;

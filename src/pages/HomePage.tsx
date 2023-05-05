@@ -1,22 +1,26 @@
-import { useEffect } from "react"
-import { useGlobalStore } from "../redux-toolkit/store"
+import { useEffect } from "react";
+import { Typography } from "@mui/material";
+import { useGlobalStore } from "../redux-toolkit/store";
+import { BikeList } from "../components/BikeList";
 
-const  HomePage = () => {
+const HomePage = () => {
+  const { getBikeList, bikeSelect } = useGlobalStore();
+  const { bikeList, error, loading } = bikeSelect;
 
-    const {getBikeList, bikeSelect} = useGlobalStore()
-    const {bikeList, error, loading} = bikeSelect
+  console.log("HOME", bikeList, error, loading);
 
-    console.log('HOME', bikeList, error, loading)
+  useEffect(() => {
+    getBikeList();
+  }, []);
 
-    useEffect(()=>{
-        getBikeList()
-    }, [])
+  return (
+    <>
+      <Typography variant="h2" component="h2">
+        Bicycles to rent
+      </Typography>
+      <BikeList list={bikeList} />
+    </>
+  );
+};
 
-    return (
-        <>
-            Home
-        </>
-    )
-}
-
-export default HomePage
+export default HomePage;

@@ -5,9 +5,9 @@ import { globalContext } from "./context";
 import { StoreProviderProps } from "../types";
 
 export const GlobalStoreProvider = ({ children }: StoreProviderProps) => {
-    return (
-      <Provider store={store} context={globalContext}>
-        {children}
-      </Provider>
-    );
-  };
+  return (
+    <Provider store={store} context={globalContext}>
+      {children}
+    </Provider>
+  );
+};

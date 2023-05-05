@@ -3,7 +3,6 @@ import { configureStore, Store } from "@reduxjs/toolkit";
 import BikeReducer, { selectBikeState, getBikeList } from "./slices/bikeSlice";
 import { useGlobalDispatch, useGlobalSelector } from "./hooks";
 
-
 export const store: Store = configureStore({
   reducer: {
     bike: BikeReducer,
@@ -22,4 +21,3 @@ export const useGlobalStore = () => {
     getBikeList: () => dispatch(getBikeList()),
   };
 };
-
