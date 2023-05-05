@@ -34,14 +34,18 @@ export type AlertDialogProps = {
   handleAgree: () => void;
 };
 
-export type FormData = {
+export interface FormData {
   username: string;
   email: string;
   phone: string;
   dateStart: string;
   dateEnd: string;
-};
+}
 
 export type FormBikeProps = {
   handleSubmit: (data: FormData) => void;
 };
+
+export interface InfoRent extends FormData {
+  idBike: string;
+}

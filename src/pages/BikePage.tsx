@@ -8,13 +8,14 @@ import { getDiffByHours, formatDate } from "../generalFunctions/date";
 import { PRICES_OF_BIKES } from "../contants";
 import { Bike } from "../components/Bike";
 import { AlertDialog } from "../components/AlertDialog";
-import { Info, FormData } from "../types";
+import { Info, FormData, InfoRent } from "../types";
 
 const BikePage = () => {
   const { id } = useParams();
   const [open, setOpen] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [info, setInfo] = useState<Info>({ title: "", content: "" });
+  const [infoRent, setInforRent] = useState<InfoRent>()
   const { getOneBike, bikeSelect } = useGlobalStore();
   const { loading, currentBike } = bikeSelect;
   const { title, content } = info;
@@ -57,10 +58,16 @@ const BikePage = () => {
     prices.days = diffDays;
     prices.priceByDay = priceByDay;
 
+    setInforRent({
+      ...formData,
+      idBike: currentBike.id
+    })
     openConfirmation(prices.getPrice());
   };
 
   const handleAgree = () => {
+    // Save in localstorage
+    localStorage.setItem('rent', JSON.stringify(infoRent))
     setSuccess(true);
     setOpen(false);
     // Hide alert after 3 seconds
