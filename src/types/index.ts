@@ -49,3 +49,4 @@ export type FormBikeProps = {
 export interface InfoRent extends FormData {
   idBike: string;
 }
+

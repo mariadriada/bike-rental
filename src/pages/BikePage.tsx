@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Typography, Alert, AlertTitle, Grid } from "@mui/material";
+import { useParams, useNavigate } from "react-router-dom";
+import { Typography, Alert, AlertTitle, Grid, Button } from "@mui/material";
 import { useGlobalStore } from "../redux-toolkit/store";
 import { Loader } from "../components/Loader";
 import { FormBike } from "../components/FormBike";
@@ -15,14 +15,23 @@ const BikePage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [info, setInfo] = useState<Info>({ title: "", content: "" });
-  const [infoRent, setInforRent] = useState<InfoRent>()
+  const [infoRent, setInforRent] = useState<InfoRent>();
   const { getOneBike, bikeSelect } = useGlobalStore();
   const { loading, currentBike } = bikeSelect;
   const { title, content } = info;
+  const navigate = useNavigate();
 
   useEffect(() => {
     getOneBike(id);
   }, []);
+
+  const goToHome = () => {
+    navigate("/");
+  };
+
+  if (Object.keys(currentBike).length < 1) {
+    goToHome();
+  }
 
   if (loading) {
     return <Loader />;
@@ -54,23 +63,29 @@ const BikePage = () => {
     // calc price by day
     const priceByDay = currentDay <= 14 ? 10 : 12;
 
-    const prices = PRICES_OF_BIKES[type];
+    type Prices = {
+      days: number;
+      priceByDay: number;
+      getPrice: () => number;
+    };
+
+    const prices: Prices = PRICES_OF_BIKES[type];
     prices.days = diffDays;
     prices.priceByDay = priceByDay;
 
     setInforRent({
       ...formData,
-      idBike: currentBike.id
-    })
+      idBike: currentBike.id,
+    });
     openConfirmation(prices.getPrice());
   };
 
   const handleAgree = () => {
     // Save in localstorage
-    localStorage.setItem('rent', JSON.stringify(infoRent))
+    localStorage.setItem("rent", JSON.stringify(infoRent));
     setSuccess(true);
     setOpen(false);
-    // Hide alert after 3 seconds
+    //Hide alert after 3 seconds
     setTimeout(() => {
       setSuccess(false);
     }, 3000);
@@ -79,10 +94,22 @@ const BikePage = () => {
   return (
     <>
       {success && (
-        <Alert severity="success" variant="filled">
-          <AlertTitle>Success</AlertTitle>
-          This is a success alert — <strong>check it out!</strong>
-        </Alert>
+        <>
+          <Button
+            style={{ position: "fixed", top: "10px", left: "10px" }}
+            variant="contained"
+            size="small"
+            color="secondary"
+            type="submit"
+            onClick={goToHome}
+          >
+            Back
+          </Button>
+          <Alert severity="success" variant="filled">
+            <AlertTitle>Success</AlertTitle>
+            Request saved succesfull!!
+          </Alert>
+        </>
       )}
       <Grid container spacing={2}>
         <Grid item xs={12} sm={12} md={12}>
