@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -15,6 +15,7 @@ const AlertDialog: FC<AlertDialogProps> = ({
   handleAgree,
 }) => {
   const handleClose = (): void => {
+    console.log('handle..')
     setOpen(false);
   };
 

@@ -33,6 +33,7 @@ const FormBike: FC<FormBikeProps> = ({ handleSubmit }) => {
         <CardContent>
           <Stack spacing={0} direction="row" sx={{ marginBottom: 0 }}>
             <TextField
+              data-testid="username"
               color="secondary"
               label="Name"
               name="username"
@@ -45,6 +46,7 @@ const FormBike: FC<FormBikeProps> = ({ handleSubmit }) => {
             />
 
             <TextField
+              data-testid="phone"
               color="secondary"
               label="Phone"
               name="phone"
@@ -60,6 +62,7 @@ const FormBike: FC<FormBikeProps> = ({ handleSubmit }) => {
 
         <CardContent>
           <TextField
+            data-testid="email"
             color="secondary"
             label="Email"
             name="email"
@@ -80,6 +83,7 @@ const FormBike: FC<FormBikeProps> = ({ handleSubmit }) => {
             sx={{ marginBottom: 0 }}
           >
             <TextField
+              data-testid="dateStart"
               type="date"
               name="dateStart"
               variant="outlined"
@@ -96,6 +100,7 @@ const FormBike: FC<FormBikeProps> = ({ handleSubmit }) => {
               }}
             />
             <TextField
+              data-testid="dateEnd"
               type="date"
               name="dateEnd"
               color="secondary"
